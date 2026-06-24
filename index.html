@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Priya Solanki — Generative AI Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+
+/* ── Tokens ────────────────────────────────────────────── */
+:root {
+  --ink:       #0A0E1A;
+  --ink-2:     #3D4460;
+  --ink-3:     #8B90A8;
+  --paper:     #F8F9FC;
+  --paper-2:   #F0F2F8;
+  --rule:      #E2E5EF;
+  --accent:    #4F46E5;
+  --accent-lt: #EEF2FF;
+  --accent-md: #C7D2FE;
+  --ok:        #059669;
+  --serif:     'DM Serif Display', Georgia, serif;
+  --sans:      'Inter', system-ui, sans-serif;
+  --mono:      'JetBrains Mono', monospace;
+  --max:       1120px;
+  --pad:       clamp(1.5rem, 5vw, 5rem);
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+::selection { background: var(--accent-md); }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-thumb { background: var(--accent); }
+
+/* ── Nav ───────────────────────────────────────────────── */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(248,249,252,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--rule);
+  transition: border-color .3s;
+}
+.nav-inner {
+  max-width: var(--max); margin: 0 auto; padding: 0 var(--pad);
+  height: 62px; display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: var(--serif); font-size: 1.25rem; letter-spacing: -.01em; color: var(--ink);
+}
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a { font-size: .82rem; font-weight: 500; color: var(--ink-2); letter-spacing: .04em; text-transform: uppercase; transition: color .15s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-hire {
+  background: var(--ink); color: #fff; border: none;
+  padding: .5rem 1.3rem; border-radius: 6px;
+  font-size: .82rem; font-weight: 600; cursor: pointer; letter-spacing: .02em;
+  transition: background .15s, transform .15s;
+}
+.nav-hire:hover { background: var(--accent); transform: translateY(-1px); }
+
+/* ── Hero ──────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 7rem var(--pad) 5rem;
+  max-width: var(--max); margin: 0 auto;
+  position: relative;
+}
+.hero-grid {
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 5rem; align-items: center; width: 100%;
+}
+.hero-label {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--mono); font-size: .72rem; color: var(--accent);
+  letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1.8rem;
+}
+.hero-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+h1.hero-h {
+  font-family: var(--serif); font-size: clamp(3rem, 5.5vw, 5rem);
+  line-height: 1.05; letter-spacing: -.02em; margin-bottom: 1.6rem; color: var(--ink);
+}
+h1.hero-h em { font-style: italic; color: var(--accent); }
+.hero-typewriter {
+  font-family: var(--mono); font-size: .9rem; color: var(--ink-2);
+  margin-bottom: 2.2rem; min-height: 1.5rem;
+}
+.hero-typewriter span { border-right: 2px solid var(--accent); padding-right: 2px; animation: blink .7s step-end infinite; }
+@keyframes blink { 0%,100%{border-color:var(--accent)} 50%{border-color:transparent} }
+.hero-sub {
+  font-size: 1.05rem; color: var(--ink-2); line-height: 1.75;
+  max-width: 480px; margin-bottom: 2.8rem;
+}
+.hero-actions { display: flex; gap: .9rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+.btn-solid {
+  background: var(--ink); color: #fff; border: 1.5px solid var(--ink);
+  padding: .75rem 1.8rem; border-radius: 6px; font-size: .9rem; font-weight: 600;
+  cursor: pointer; transition: all .15s; letter-spacing: .01em;
+}
+.btn-solid:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-1px); }
+.btn-ghost {
+  background: transparent; color: var(--ink); border: 1.5px solid var(--rule);
+  padding: .75rem 1.8rem; border-radius: 6px; font-size: .9rem; font-weight: 500;
+  cursor: pointer; transition: all .15s;
+}
+.btn-ghost:hover { border-color: var(--ink-2); color: var(--accent); border-color: var(--accent); }
+.hero-metrics { display: flex; gap: 2.5rem; padding-top: 2.5rem; border-top: 1px solid var(--rule); }
+.metric-val { font-family: var(--serif); font-size: 2.4rem; color: var(--ink); line-height: 1; margin-bottom: .25rem; }
+.metric-val sup { font-size: 1rem; font-family: var(--sans); color: var(--accent); }
+.metric-lbl { font-size: .75rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; max-width: 100px; line-height: 1.4; }
+
+/* Avatar panel */
+.hero-panel {
+  background: var(--paper-2); border: 1px solid var(--rule);
+  border-radius: 20px; padding: 2.5rem 2rem;
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.avatar-wrap {
+  width: 120px; height: 120px; border-radius: 50%; margin: 0 auto;
+  background: var(--accent-lt); border: 3px solid var(--accent-md);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.avatar-wrap svg { width: 90px; height: 90px; }
+.panel-name { text-align: center; }
+.panel-name h3 { font-family: var(--serif); font-size: 1.3rem; margin-bottom: .2rem; }
+.panel-name p { font-size: .8rem; color: var(--ink-3); }
+.panel-divider { height: 1px; background: var(--rule); }
+.panel-stat { display: flex; justify-content: space-between; align-items: center; font-size: .82rem; }
+.panel-stat-label { color: var(--ink-2); }
+.panel-stat-val { font-weight: 600; color: var(--ink); font-family: var(--mono); font-size: .78rem; }
+.panel-tag-row { display: flex; flex-wrap: wrap; gap: .4rem; }
+.ptag {
+  background: white; border: 1px solid var(--rule);
+  padding: .25rem .65rem; border-radius: 100px;
+  font-size: .72rem; color: var(--ink-2); font-weight: 500;
+}
+.status-dot {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-size: .78rem; font-weight: 600; color: var(--ok);
+}
+.status-dot::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--ok); animation: pulse2 2s infinite; }
+@keyframes pulse2 { 0%,100%{opacity:1} 50%{opacity:.4} }
+
+/* ── Section scaffold ──────────────────────────────────── */
+.section-wrap { padding: 6rem var(--pad); max-width: var(--max); margin: 0 auto; }
+.section-wrap.ruled { border-top: 1px solid var(--rule); }
+.section-label {
+  font-family: var(--mono); font-size: .72rem; color: var(--accent);
+  letter-spacing: .12em; text-transform: uppercase; margin-bottom: .8rem;
+  display: flex; align-items: center; gap: .6rem;
+}
+.section-label::before { content:''; width:20px; height:1px; background:var(--accent); }
+h2.section-h {
+  font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 3rem);
+  letter-spacing: -.02em; line-height: 1.1; margin-bottom: 1rem; color: var(--ink);
+}
+h2.section-h em { font-style: italic; color: var(--accent); }
+.section-sub { color: var(--ink-2); max-width: 520px; margin-bottom: 3.5rem; font-size: 1rem; line-height: 1.75; }
+
+/* ── Story / About ─────────────────────────────────────── */
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.story-body p { color: var(--ink-2); font-size: 1.02rem; line-height: 1.8; margin-bottom: 1.3rem; }
+.story-body p strong { color: var(--ink); font-weight: 600; }
+.story-body blockquote {
+  border-left: 3px solid var(--accent); padding-left: 1.3rem; margin: 2rem 0;
+  font-family: var(--serif); font-size: 1.2rem; font-style: italic; color: var(--ink); line-height: 1.5;
+}
+.principles { display: flex; flex-direction: column; gap: .9rem; }
+.principle {
+  display: flex; gap: 1rem; align-items: flex-start;
+  padding: 1.2rem 1.3rem; background: white;
+  border: 1px solid var(--rule); border-radius: 10px;
+  transition: border-color .15s, transform .15s;
+}
+.principle:hover { border-color: var(--accent-md); transform: translateX(3px); }
+.principle-num { font-family: var(--mono); font-size: .7rem; color: var(--accent); font-weight: 500; padding-top: .15rem; min-width: 24px; }
+.principle h4 { font-size: .9rem; font-weight: 600; margin-bottom: .25rem; }
+.principle p { font-size: .82rem; color: var(--ink-2); line-height: 1.55; }
+
+/* ── Skills ────────────────────────────────────────────── */
+.skills-bg { background: var(--paper-2); }
+.skill-tabs { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.skill-tab {
+  padding: .55rem 1.25rem; border-radius: 100px; border: 1.5px solid var(--rule);
+  font-size: .85rem; font-weight: 500; cursor: pointer; background: white;
+  color: var(--ink-2); transition: all .15s; white-space: nowrap; font-family: var(--sans);
+}
+.skill-tab:hover { border-color: var(--accent); color: var(--accent); }
+.skill-tab.active { background: var(--accent); border-color: var(--accent); color: white; font-weight: 600; }
+.skill-panel { display: none; }
+.skill-panel.active { display: block; animation: fadeIn .25s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:none} }
+.skill-panel-inner {
+  background: white; border: 1px solid var(--rule); border-radius: 16px; overflow: hidden;
+}
+.sp-header {
+  display: flex; align-items: center; gap: 1.2rem;
+  padding: 2rem 2.5rem; border-bottom: 1px solid var(--rule);
+}
+.sp-icon { font-size: 2rem; }
+.sp-header h3 { font-family: var(--serif); font-size: 1.5rem; letter-spacing:-.01em; color: var(--ink); margin-bottom:.2rem; }
+.sp-header p { font-size: .88rem; color: var(--ink-2); line-height: 1.6; }
+.sp-techs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; }
+.sp-tech {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.2rem 2rem; border-bottom: 1px solid var(--rule); border-right: 1px solid var(--rule);
+  transition: background .15s;
+}
+.sp-tech:nth-child(even) { border-right: none; }
+.sp-tech:nth-last-child(-n+2) { border-bottom: none; }
+.sp-tech:hover { background: var(--accent-lt); }
+.sp-tech-icon { font-size: 1rem; padding-top: .1rem; flex-shrink: 0; }
+.sp-tech-name { font-size: .92rem; font-weight: 600; color: var(--ink); margin-bottom:.2rem; }
+.sp-tech-desc { font-size: .8rem; color: var(--ink-2); line-height: 1.5; }
+
+/* ── Projects ──────────────────────────────────────────── */
+.projects-list { display: flex; flex-direction: column; gap: 1.5px; background: var(--rule); border-radius: 14px; overflow: hidden; }
+.project-row {
+  background: white; padding: 2.2rem 2.5rem;
+  display: grid; grid-template-columns: 60px 1fr auto;
+  gap: 2rem; align-items: start;
+  cursor: pointer; transition: background .15s;
+  position: relative;
+}
+.project-row:hover { background: #fafbff; }
+.project-row.open { background: var(--accent-lt); }
+.proj-num { font-family: var(--mono); font-size: .7rem; color: var(--ink-3); padding-top: .3rem; }
+.proj-main {}
+.proj-top { display: flex; align-items: center; gap: 1rem; margin-bottom: .6rem; flex-wrap: wrap; }
+.proj-title { font-family: var(--serif); font-size: 1.3rem; letter-spacing: -.01em; color: var(--ink); }
+.proj-badge {
+  font-size: .68rem; font-weight: 600; padding: .2rem .65rem; border-radius: 100px; letter-spacing: .05em;
+}
+.badge-live { background: #d1fae5; color: var(--ok); }
+.badge-prod { background: var(--accent-lt); color: var(--accent); }
+.proj-tagline { font-size: .9rem; color: var(--ink-2); margin-bottom: .9rem; line-height: 1.55; }
+.proj-stack { display: flex; flex-wrap: wrap; gap: .35rem; }
+.stk { font-family: var(--mono); font-size: .68rem; background: var(--paper-2); border: 1px solid var(--rule); padding: .2rem .55rem; border-radius: 4px; color: var(--ink-2); }
+.proj-toggle { color: var(--ink-3); font-size: 1.2rem; padding-top: .2rem; transition: transform .25s; user-select: none; }
+.project-row.open .proj-toggle { transform: rotate(45deg); }
+.proj-detail {
+  display: none; padding: 0 2.5rem 2.2rem calc(60px + 2rem + 2rem);
+  background: var(--accent-lt);
+}
+.project-row.open + .proj-detail { display: block; }
+.proj-detail-inner { border-top: 1px solid var(--accent-md); padding-top: 1.5rem; }
+.detail-section { margin-bottom: 1.3rem; }
+.detail-section h5 { font-size: .72rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; font-family: var(--mono); }
+.detail-section ul { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
+.detail-section li { font-size: .88rem; color: var(--ink-2); line-height: 1.6; display: flex; gap: .7rem; }
+.detail-section li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: .8rem; padding-top: .05rem; }
+.detail-section li strong { color: var(--ink); font-weight: 600; }
+
+/* ── Experience ────────────────────────────────────────── */
+.exp-grid { display: grid; grid-template-columns: 200px 1fr; gap: 4rem; }
+.exp-sidebar {}
+.exp-sidebar .exp-date { font-family: var(--mono); font-size: .78rem; color: var(--ink-3); margin-bottom: .4rem; }
+.exp-sidebar .exp-co { font-weight: 700; font-size: .95rem; margin-bottom: .2rem; }
+.exp-sidebar .exp-loc { font-size: .82rem; color: var(--ink-2); }
+.exp-body {}
+.exp-role { font-family: var(--serif); font-size: 1.6rem; margin-bottom: .3rem; letter-spacing: -.01em; }
+.exp-tagline { font-size: .9rem; color: var(--ink-2); margin-bottom: 2rem; line-height: 1.6; }
+.exp-wins { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.win-card {
+  background: white; border: 1px solid var(--rule);
+  border-radius: 10px; padding: 1.3rem 1.4rem;
+  transition: border-color .15s;
+}
+.win-card:hover { border-color: var(--accent-md); }
+.win-icon { font-size: 1.3rem; margin-bottom: .7rem; }
+.win-title { font-size: .85rem; font-weight: 600; margin-bottom: .3rem; }
+.win-desc { font-size: .8rem; color: var(--ink-2); line-height: 1.55; }
+
+/* edu */
+.edu-row {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  padding: 2rem 0; border-top: 1px solid var(--rule);
+}
+.edu-left h3 { font-family: var(--serif); font-size: 1.3rem; margin-bottom: .3rem; }
+.edu-left p { font-size: .9rem; color: var(--ink-2); }
+.edu-right { text-align: right; }
+.edu-right .cgpa { font-family: var(--serif); font-size: 2rem; color: var(--accent); }
+.edu-right .cgpa-label { font-size: .72rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: .06em; }
+
+/* ── Achievements ──────────────────────────────────────── */
+.ach-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+.ach-card {
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--rule); border-radius: 12px; background: white;
+  transition: border-color .15s, transform .15s;
+}
+.ach-card:hover { border-color: var(--accent-md); transform: translateY(-3px); }
+.ach-val { font-family: var(--serif); font-size: 2.6rem; color: var(--accent); line-height: 1; margin-bottom: .4rem; }
+.ach-desc { font-size: .8rem; color: var(--ink-2); line-height: 1.5; }
+.award-card {
+  display: flex; align-items: center; gap: 2rem;
+  background: var(--ink); border-radius: 14px; padding: 2.2rem 2.5rem; color: white;
+}
+.award-icon { font-size: 2.5rem; flex-shrink: 0; }
+.award-body h4 { font-family: var(--serif); font-size: 1.3rem; margin-bottom: .4rem; }
+.award-body p { font-size: .88rem; color: #8B90A8; line-height: 1.6; }
+
+/* ── Contact ───────────────────────────────────────────── */
+.contact-grid{
+max-width:700px;
+margin:0 auto;
+}
+
+.contact-info{
+display:flex;
+flex-direction:column;
+gap:1rem;
+}
+
+.clink{
+width:100%;
+max-width:700px;
+
+margin:0 auto;
+
+padding:1rem 1.2rem;
+}
+.contact-intro h3 { font-family: var(--serif); font-size: 1.6rem; margin-bottom: .8rem; }
+.contact-intro p { font-size: .95rem; color: var(--ink-2); line-height: 1.75; margin-bottom: 2rem; }
+.contact-links { display: flex; flex-direction: column; gap: .6rem; }
+.clink {
+  display: flex; align-items: center; gap: .9rem;
+  padding: .85rem 1.1rem; border: 1px solid var(--rule); border-radius: 8px;
+  font-size: .85rem; color: var(--ink-2); background: white;
+  transition: border-color .15s, color .15s;
+}
+.clink:hover { border-color: var(--accent); color: var(--accent); }
+.clink-icon { width: 28px; height: 28px; border-radius: 6px; background: var(--accent-lt); display: flex; align-items: center; justify-content: center; font-size: .9rem; flex-shrink: 0; }
+.form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.fg { display: flex; flex-direction: column; gap: .4rem; }
+.fg label { font-size: .75rem; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: .06em; }
+.fg input, .fg textarea, .fg select {
+  background: white; border: 1.5px solid var(--rule); color: var(--ink);
+  padding: .8rem 1rem; border-radius: 8px; font-family: var(--sans); font-size: .9rem;
+  outline: none; transition: border-color .15s, box-shadow .15s; resize: vertical;
+}
+.fg input:focus, .fg textarea:focus, .fg select:focus {
+  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,70,229,.1);
+}
+.fg textarea { min-height: 120px; }
+.form-submit {
+  background: var(--ink); color: white; border: none;
+  padding: .85rem 2.2rem; border-radius: 8px;
+  font-size: .9rem; font-weight: 600; cursor: pointer; align-self: flex-start;
+  transition: background .15s, transform .15s;
+}
+.form-submit:hover { background: var(--accent); transform: translateY(-1px); }
+.form-ok { display: none; padding: .9rem 1.1rem; background: #d1fae5; border-radius: 8px; color: var(--ok); font-size: .88rem; font-weight: 500; }
+
+/* ── Footer ────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--rule); padding: 2rem var(--pad);
+  display: flex; justify-content: space-between; align-items: center;
+  max-width: var(--max); margin: 0 auto;
+  font-size: .8rem; color: var(--ink-3);
+}
+footer a { color: var(--accent); }
+
+/* ── Reveal ────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; }
+  .hero-panel { display: none; }
+  .story-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .skill-groups { grid-template-columns: 1fr 1fr; }
+  .exp-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .exp-wins { grid-template-columns: 1fr; }
+  .ach-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .form-row2 { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  footer { flex-direction: column; gap: .5rem; text-align: center; }
+}
+@media (max-width: 600px) {
+  .skill-groups { grid-template-columns: 1fr; }
+  .ach-grid { grid-template-columns: 1fr 1fr; }
+  .project-row { grid-template-columns: 40px 1fr auto; gap: 1rem; padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">Priya <span>Solanki</span></div>
+    <div class="nav-links">
+      <a href="#story">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="nav-hire" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire me</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:var(--max);margin:0 auto;padding:0 var(--pad);">
+<section id="hero" style="max-width:100%;padding-left:0;padding-right:0;">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-label">Generative AI Engineer · Open to work</div>
+      <h1 class="hero-h">
+        I build AI that<br>
+        <em>nobody can question.</em>
+      </h1>
+      <div class="hero-typewriter">
+        &gt; <span id="typer"></span>
+      </div>
+      <p class="hero-sub">
+        Indore-based AI engineer with 1.5+ years shipping production systems — chatbots, video pipelines, fashion AI — to real users. I research until I understand, build until it's solid, and deploy until it runs with zero failures.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-solid" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">See my work</button>
+        <button class="btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get in touch</button>
+      </div>
+      <div class="hero-metrics">
+        <div>
+          <div class="metric-val">3</div>
+          <div class="metric-lbl">Live products in production</div>
+        </div>
+        <div>
+          <div class="metric-val"><sup>₹</sup>16</div>
+          <div class="metric-lbl">Per AI video (was USD SaaS)</div>
+        </div>
+        <div>
+          <div class="metric-val">0</div>
+          <div class="metric-lbl">Production failures across all deployments</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Side panel -->
+    <div class="hero-panel reveal">
+      <div class="avatar-wrap">
+        <svg viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="sg" cx="50%" cy="40%" r="55%">
+              <stop offset="0%" stop-color="#f5c9a0"/>
+              <stop offset="100%" stop-color="#d4956a"/>
+            </radialGradient>
+            <linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#1a0a2e"/>
+              <stop offset="100%" stop-color="#3b0764"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="45" cy="85" rx="28" ry="18" fill="#4F46E5" opacity=".7"/>
+          <rect x="38" y="62" width="10" height="10" rx="4" fill="url(#sg)"/>
+          <ellipse cx="45" cy="48" rx="20" ry="23" fill="url(#sg)"/>
+          <ellipse cx="45" cy="30" rx="21" ry="14" fill="url(#hg)"/>
+          <ellipse cx="27" cy="44" rx="5" ry="11" fill="url(#hg)"/>
+          <ellipse cx="63" cy="44" rx="5" ry="11" fill="url(#hg)"/>
+          <ellipse cx="37" cy="49" rx="3.5" ry="4" fill="#2d1b4e"/>
+          <ellipse cx="53" cy="49" rx="3.5" ry="4" fill="#2d1b4e"/>
+          <circle cx="38.2" cy="48" r="1.2" fill="#fff" opacity=".85"/>
+          <circle cx="54.2" cy="48" r="1.2" fill="#fff" opacity=".85"/>
+          <rect x="32" y="44" width="11" height="8" rx="4" fill="none" stroke="#4F46E5" stroke-width="1.2"/>
+          <rect x="47" y="44" width="11" height="8" rx="4" fill="none" stroke="#4F46E5" stroke-width="1.2"/>
+          <line x1="43" y1="48" x2="47" y2="48" stroke="#4F46E5" stroke-width="1.2"/>
+          <path d="M40 59 Q45 63 50 59" stroke="#c4845a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="panel-name">
+        <h3>Priya Solanki</h3>
+        <p>Generative AI Engineer · Indore, India</p>
+      </div>
+      <div class="panel-divider"></div>
+      <div class="panel-stat">
+        <span class="panel-stat-label">Current role</span>
+        <span class="panel-stat-val">Xalt Analytics</span>
+      </div>
+      <div class="panel-stat">
+        <span class="panel-stat-label">Experience</span>
+        <span class="panel-stat-val">1.5+ years</span>
+      </div>
+      <div class="panel-stat">
+        <span class="panel-stat-label">CGPA</span>
+        <span class="panel-stat-val">8.27 / 10</span>
+      </div>
+      <div class="panel-divider"></div>
+      <div class="panel-tag-row">
+        <span class="ptag">LLMs</span>
+        <span class="ptag">RAG</span>
+        <span class="ptag">FastAPI</span>
+        <span class="ptag">Docker</span>
+        <span class="ptag">Runpod</span>
+        <span class="ptag">Computer Vision</span>
+        <span class="ptag">Multimodal AI</span>
+      </div>
+      <div class="panel-divider"></div>
+      <div class="status-dot">Available for new roles</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- STORY -->
+<div style="border-top:1px solid var(--rule);">
+<div class="section-wrap" id="story">
+  <div class="section-label">About me</div>
+  <h2 class="section-h">The engineer who <em>doesn't ship until it's right.</em></h2>
+  <div class="story-grid reveal">
+    <div class="story-body">
+      <p>I'm a Generative AI Engineer who builds production AI systems that <strong>real users depend on</strong>. Not demos. Not PoCs that sit in a notebook. Systems that go live, handle traffic, and keep running.</p>
+      <p>My path into AI started with fundamentals — understanding why models fail, not just how to prompt them. That's still how I work. When LangChain wasn't good enough for our chatbot, I didn't just try another framework. I <strong>diagnosed the agent reasoning loop</strong>, understood why it was failing, then migrated to the OpenAI Agents SDK with a clear rationale.</p>
+      <blockquote>"I make things in a way that nobody can question — that this will fail. Proper code, proper research, the best I can do."</blockquote>
+      <p>I care about the Indian AI ecosystem — building multilingual systems, integrating Sarvam for Indian accents, making AI products that work for Indian users and not just English speakers. That's the direction I'm heading: <strong>senior AI engineer who understands systems deeply</strong>, not just someone who connects APIs.</p>
+    </div>
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-num">01</div>
+        <div>
+          <h4>Research first, always</h4>
+          <p>I don't start coding until I understand the problem deeply. Cold start issue? Research why, document the tradeoffs, then fix it properly.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">02</div>
+        <div>
+          <h4>Security before launch</h4>
+          <p>Prompt injection, hijacking, adversarial inputs — I test these before every release. Not after an incident.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">03</div>
+        <div>
+          <h4>Build for replaceability</h4>
+          <p>Every system I design allows model swaps, vendor changes, and feature additions without breaking what's live.</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="principle-num">04</div>
+        <div>
+          <h4>Cost is a product decision</h4>
+          <p>Replacing Creatify's USD SaaS with open-source wasn't just engineering — it was a product call that changed the business model.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- SKILLS -->
+<div class="skills-bg" style="border-top:1px solid var(--rule);">
+<div class="section-wrap" id="skills">
+  <div class="section-label">Technical skills</div>
+  <h2 class="section-h">Full-stack AI, <em>end to end.</em></h2>
+  <p class="section-sub">From prompt engineering to GPU deployment. Click a category to explore.</p>
+
+  <div class="reveal">
+  <div class="skill-tabs">
+    <button class="skill-tab active" onclick="showTab('genai',this)">🧠 Generative AI</button>
+    <button class="skill-tab" onclick="showTab('media',this)">🎬 Multimodal & Media</button>
+    <button class="skill-tab" onclick="showTab('cv',this)">👁️ Computer Vision</button>
+    <button class="skill-tab" onclick="showTab('backend',this)">⚙️ Backend & APIs</button>
+    <button class="skill-tab" onclick="showTab('infra',this)">☁️ Infrastructure</button>
+    <button class="skill-tab" onclick="showTab('ml',this)">🔬 ML & Data</button>
+  </div>
+
+  <!-- Panel: GenAI -->
+  <div class="skill-panel active" id="tab-genai">
+    <div class="skill-panel-inner">
+      <div class="sp-header">
+        <div class="sp-icon">🧠</div>
+        <div>
+          <h3>Generative AI & LLMs</h3>
+          <p>Building and orchestrating large language model systems that work reliably in production — not just in notebooks.</p>
+        </div>
+      </div>
+      <div class="sp-techs">
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">OpenAI Agents SDK</div><div class="sp-tech-desc">Migrated to this from LangChain after diagnosing agent reasoning bottlenecks — production-quality agent orchestration.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">LangChain & LangGraph</div><div class="sp-tech-desc">Evaluated and used extensively; understand its strengths and failure modes firsthand from production experience.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">RAG Architecture</div><div class="sp-tech-desc">Chose RAG over fine-tuning for updatable knowledge bases; implemented with ChromaDB and semantic chunking.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Prompt Engineering</div><div class="sp-tech-desc">System prompt design, adversarial hardening, and prompt injection prevention — tested before every release.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Multi-Agent Systems</div><div class="sp-tech-desc">Designing agentic workflows where multiple models collaborate with defined handoffs and fallback handling.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Vector Databases</div><div class="sp-tech-desc">ChromaDB for semantic retrieval in production chatbot — updatable without retraining the underlying model.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel: Media -->
+  <div class="skill-panel" id="tab-media">
+    <div class="skill-panel-inner">
+      <div class="sp-header">
+        <div class="sp-icon">🎬</div>
+        <div>
+          <h3>Multimodal & Media AI</h3>
+          <p>End-to-end audio, video, and image pipelines — from model selection to FFmpeg assembly to production delivery.</p>
+        </div>
+      </div>
+      <div class="sp-techs">
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">CLIP</div><div class="sp-tech-desc">Image-text matching for intelligent, context-aware image selection in the video ad pipeline.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">FFmpeg</div><div class="sp-tech-desc">Video assembly, subtitle injection, format conversion — the backbone of the production video pipeline.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">ElevenLabs · Sarvam · Ditto</div><div class="sp-tech-desc">Audio synthesis across providers; Sarvam specifically for Indian-accent voice support based on user demand.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Sora</div><div class="sp-tech-desc">Integrated for the fashion UGC pipeline — high-fidelity fashion video generation replacing manual shoots.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Avatar Video Generation</div><div class="sp-tech-desc">Built avatar-based video generation APIs for personalised, localisable marketing content at scale.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Multilingual Audio</div><div class="sp-tech-desc">Designed language-agnostic audio pipeline supporting multiple languages from a single generation workflow.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel: CV -->
+  <div class="skill-panel" id="tab-cv">
+    <div class="skill-panel-inner">
+      <div class="sp-header">
+        <div class="sp-icon">👁️</div>
+        <div>
+          <h3>Computer Vision</h3>
+          <p>Detection, inpainting, OCR — applied to solve a real production failure mode in AI-generated imagery.</p>
+        </div>
+      </div>
+      <div class="sp-techs">
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">YOLO</div><div class="sp-tech-desc">Used for text region detection in the Intelligent Text Correction pipeline — fast, accurate bounding box extraction.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">LaMa Inpainting</div><div class="sp-tech-desc">Seamless region removal after text detection; resolved the visible patch boundary problem with mask margin expansion.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">OCR Pipelines</div><div class="sp-tech-desc">Extracting erroneous text strings from detected regions for downstream correction and re-rendering.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">OpenCV</div><div class="sp-tech-desc">Alpha compositing at feather edges for invisible post-inpaint blending — the key to production-quality correction.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">PyTorch · TensorFlow</div><div class="sp-tech-desc">Deep learning frameworks for model training, evaluation, and inference in production CV systems.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">HuggingFace Transformers</div><div class="sp-tech-desc">Loading, fine-tuning, and deploying pre-trained models from the Hub for both NLP and vision tasks.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel: Backend -->
+  <div class="skill-panel" id="tab-backend">
+    <div class="skill-panel-inner">
+      <div class="sp-header">
+        <div class="sp-icon">⚙️</div>
+        <div>
+          <h3>Backend & APIs</h3>
+          <p>Production-grade API services handling real-time AI inference, async job queues, and live user traffic.</p>
+        </div>
+      </div>
+      <div class="sp-techs">
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Python · FastAPI</div><div class="sp-tech-desc">Primary language and framework — all production AI services built and deployed with FastAPI for speed and type safety.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Redis · Celery</div><div class="sp-tech-desc">Added to solve multi-user concurrency bottlenecks in video generation — async task queues with parallel processing.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Nginx · Supervisord</div><div class="sp-tech-desc">Reverse proxy and process management on Linux GPU servers — the production reliability layer under all services.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">PostgreSQL · ChromaDB</div><div class="sp-tech-desc">Relational data with Postgres; vector storage with ChromaDB for semantic retrieval in the RAG chatbot.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Pydantic</div><div class="sp-tech-desc">Schema validation and data modelling for all API request/response contracts across production services.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">RESTful API Design</div><div class="sp-tech-desc">Designed API contracts with frontend team — clear schemas, versioning strategy, integration testing before release.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel: Infra -->
+  <div class="skill-panel" id="tab-infra">
+    <div class="skill-panel-inner">
+      <div class="sp-header">
+        <div class="sp-icon">☁️</div>
+        <div>
+          <h3>Infrastructure & DevOps</h3>
+          <p>GPU cloud deployment, containerisation, and migration — owning infrastructure from first deploy to production stability.</p>
+        </div>
+      </div>
+      <div class="sp-techs">
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Docker</div><div class="sp-tech-desc">All production services containerised — consistent environments from local development to GPU cloud deployment.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Runpod · Modal</div><div class="sp-tech-desc">Primary GPU cloud for AI inference workloads; Modal as tested fallback — redundancy built in from the start.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Linux GPU Servers</div><div class="sp-tech-desc">Managed GPU servers directly — CUDA environments, driver issues, process monitoring on live production machines.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">AWS · Render</div><div class="sp-tech-desc">Render for early deployments; diagnosed cold start issue and migrated to persistent GPU cloud with zero downtime.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">HuggingFace Hub</div><div class="sp-tech-desc">Model hosting, versioning, and retrieval — integrated into deployment pipelines for reproducible model loading.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Git · GitHub</div><div class="sp-tech-desc">Version control and collaboration — including managing branches across simultaneous live product updates.</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel: ML -->
+  <div class="skill-panel" id="tab-ml">
+    <div class="skill-panel-inner">
+      <div class="sp-header">
+        <div class="sp-icon">🔬</div>
+        <div>
+          <h3>ML & Data Science</h3>
+          <p>The fundamentals that make production AI reliable — evaluation, adversarial testing, and data handling.</p>
+        </div>
+      </div>
+      <div class="sp-techs">
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Model Evaluation</div><div class="sp-tech-desc">Evaluating models before production — not just accuracy but failure modes, edge cases, and worst-case behaviour.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Adversarial Testing</div><div class="sp-tech-desc">Prompt injection, hijacking, and jailbreak testing built into pre-launch checklist for every AI-facing system.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Scikit-learn</div><div class="sp-tech-desc">Classical ML — preprocessing, pipelines, and evaluation metrics as foundations underlying all applied AI work.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">NumPy · Pandas</div><div class="sp-tech-desc">Core data manipulation and numerical computing across all pipeline stages and model pre/post-processing.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">NLP Fundamentals</div><div class="sp-tech-desc">Tokenisation, embeddings, semantic similarity — the building blocks applied in RAG and chatbot systems.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">EDA · Plotly</div><div class="sp-tech-desc">Exploratory data analysis and visualisation for understanding data quality before training or fine-tuning.</div></div></div>
+      </div>
+    </div>
+  </div>
+  </div><!-- /reveal -->
+
+</div>
+</div>
+
+<!-- PROJECTS -->
+<div style="border-top:1px solid var(--rule);">
+<div class="section-wrap" id="projects">
+  <div class="section-label">Projects</div>
+  <h2 class="section-h">Shipped. Live. <em>Unbreakable.</em></h2>
+  <p class="section-sub">Four production systems built from research to deployment. Click any to read the full engineering story.</p>
+
+  <div class="projects-list reveal">
+
+    <!-- P1 -->
+    <div class="project-row" onclick="toggleProject(this)">
+      <div class="proj-num">01</div>
+      <div class="proj-main">
+        <div class="proj-top">
+          <span class="proj-title">AI Video Ad Generation Platform</span>
+          <span class="proj-badge badge-live">● Live</span>
+        </div>
+        <div class="proj-tagline">Replaced Creatify (USD SaaS) with in-house open-source. Cost: under ₹16/video. Manual effort reduced by 70%.</div>
+        <div class="proj-stack">
+          <span class="stk">LLMs</span><span class="stk">CLIP</span><span class="stk">FFmpeg</span><span class="stk">Redis</span><span class="stk">Celery</span><span class="stk">ElevenLabs</span><span class="stk">Sarvam</span><span class="stk">Nginx</span><span class="stk">Docker</span><span class="stk">Runpod</span>
+        </div>
+      </div>
+      <div class="proj-toggle">+</div>
+    </div>
+    <div class="proj-detail">
+      <div class="proj-detail-inner">
+        <div class="detail-section">
+          <h5>The engineering journey</h5>
+          <ul>
+            <li>Researched how to build a video generation pipeline from scratch — no blueprint existed. Designed the architecture before writing a line of code.</li>
+            <li>Built modular stages: <strong>LLM script generation → CLIP image selection → audio synthesis → FFmpeg assembly → subtitle injection</strong>. Each stage independently swappable.</li>
+            <li>Hit concurrency wall under multi-user load. Added <strong>Redis + Celery</strong> task queue — async job processing, no timeouts, parallel generation.</li>
+            <li>Set up <strong>Nginx + Supervisord</strong> on Linux GPU servers for production-grade process management and reliability.</li>
+            <li>Integrated <strong>Sarvam for Indian-accent voices</strong> and Ditto for avatar video — both shipped as live releases based on direct user demand.</li>
+            <li>Replaced Creatify (USD-billed) entirely. <strong>Cost dropped to under ₹16 per video</strong>, eliminating vendor lock-in.</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <h5>What made it hard</h5>
+          <ul>
+            <li>Coordinating async video stages without state corruption under concurrent load.</li>
+            <li>Keeping deployed system live while iterating — model swaps, new templates, new voices all shipped without downtime.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- P2 -->
+    <div class="project-row" onclick="toggleProject(this)">
+      <div class="proj-num">02</div>
+      <div class="proj-main">
+        <div class="proj-top">
+          <span class="proj-title">Customer-Facing AI Chatbot</span>
+          <span class="proj-badge badge-live">● Live</span>
+        </div>
+        <div class="proj-tagline">Evaluated LangChain → identified bottleneck → migrated to OpenAI Agents SDK. Cold start debugged and resolved. Security-hardened before launch.</div>
+        <div class="proj-stack">
+          <span class="stk">OpenAI Agents SDK</span><span class="stk">LangChain</span><span class="stk">LangGraph</span><span class="stk">RAG</span><span class="stk">ChromaDB</span><span class="stk">FastAPI</span><span class="stk">Docker</span>
+        </div>
+      </div>
+      <div class="proj-toggle">+</div>
+    </div>
+    <div class="proj-detail">
+      <div class="proj-detail-inner">
+        <div class="detail-section">
+          <h5>The engineering journey</h5>
+          <ul>
+            <li>Started with LangChain + LangGraph and open-source LLMs. Output quality was insufficient for a customer-facing product.</li>
+            <li><strong>Diagnosed the failure</strong>: agent reasoning loop was the bottleneck, not the model itself. Migrated to OpenAI Agents SDK — the right fix, not just a workaround.</li>
+            <li>Chose <strong>RAG over fine-tuning</strong> because the knowledge base needed frequent updates without retraining cycles. Implemented ChromaDB with semantic chunking.</li>
+            <li>Initial deployment on Render caused severe cold start latency. <strong>Researched root cause</strong> (serverless spin-up), documented tradeoffs, migrated to persistent GPU cloud.</li>
+            <li>Ran dedicated <strong>security pass before go-live</strong>: prompt injection, hijacking, jailbreak attempts. Patched system prompt vulnerabilities and added input sanitisation layer.</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <h5>What made it hard</h5>
+          <ul>
+            <li>Knowing <em>when</em> to switch frameworks — not panicking early, not persisting too long. Required deep diagnostic work.</li>
+            <li>Making security testing systematic, not ad hoc. Built a test suite for adversarial inputs, not just manual checks.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- P3 -->
+    <div class="project-row" onclick="toggleProject(this)">
+      <div class="proj-num">03</div>
+      <div class="proj-main">
+        <div class="proj-top">
+          <span class="proj-title">Fashion UGC Pipeline</span>
+          <span class="proj-badge badge-live">● Live</span>
+        </div>
+        <div class="proj-tagline">AI fashion video generation using Sora — replacing manual shoots entirely. Designed for silent model upgrades post-launch.</div>
+        <div class="proj-stack">
+          <span class="stk">Sora</span><span class="stk">Generative AI</span><span class="stk">FastAPI</span><span class="stk">Docker</span><span class="stk">Runpod</span><span class="stk">Modal</span>
+        </div>
+      </div>
+      <div class="proj-toggle">+</div>
+    </div>
+    <div class="proj-detail">
+      <div class="proj-detail-inner">
+        <div class="detail-section">
+          <h5>The engineering journey</h5>
+          <ul>
+            <li>Built an end-to-end pipeline where users generate professional fashion video content using AI — <strong>entirely replacing manual photography/video shoots</strong>.</li>
+            <li>Integrated Sora for high-fidelity fashion video generation. Designed model calls behind a <strong>single abstraction layer</strong> — enabling silent model swaps after launch.</li>
+            <li>Post-launch: image generation model was swapped based on quality feedback. <strong>Zero user-facing disruption</strong> — the abstraction layer worked exactly as designed.</li>
+            <li>Deployed on Runpod with Modal as a tested fallback — infrastructure redundancy built in from the start.</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <h5>What made it hard</h5>
+          <ul>
+            <li>Designing for replaceability upfront — building the abstraction layer before you know what needs to change requires thinking ahead.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- P4 -->
+    <div class="project-row" onclick="toggleProject(this)">
+      <div class="proj-num">04</div>
+      <div class="proj-main">
+        <div class="proj-top">
+          <span class="proj-title">Intelligent Text Correction System</span>
+          <span class="proj-badge badge-prod">⬡ Production</span>
+        </div>
+        <div class="proj-tagline">Solved corrupted text in AI-generated images. 4-stage pipeline: YOLO → OCR → LaMa inpainting → re-render. Eliminated full image regeneration fallbacks.</div>
+        <div class="proj-stack">
+          <span class="stk">YOLO</span><span class="stk">OCR</span><span class="stk">LaMa</span><span class="stk">OpenCV</span><span class="stk">Python</span>
+        </div>
+      </div>
+      <div class="proj-toggle">+</div>
+    </div>
+    <div class="proj-detail">
+      <div class="proj-detail-inner">
+        <div class="detail-section">
+          <h5>The engineering journey</h5>
+          <ul>
+            <li><strong>Root cause first</strong>: generative models treat text as visual texture — they can't reliably render brand names or CTAs. Required a dedicated correction layer outside the generation model.</li>
+            <li>Designed a 4-stage pipeline: <strong>YOLO detects text regions → OCR extracts erroneous string → LaMa inpaints cleanly → controlled re-renderer places correct text</strong> with style-matched positioning.</li>
+            <li>Core challenge: invisible blending after inpainting. Early versions left visible patch boundaries. Resolved by expanding mask margins and applying <strong>OpenCV alpha compositing at feather edges</strong>.</li>
+            <li>Deployed to production. Eliminated the previous fallback of full image regeneration — directly reducing compute cost and pipeline latency for every affected asset.</li>
+          </ul>
+        </div>
+        <div class="detail-section">
+          <h5>What made it hard</h5>
+          <ul>
+            <li>The blending problem was subtle — the inpaint looks correct in isolation but fails against the surrounding image texture. Required systematic testing across many image types.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- EXPERIENCE -->
+<div style="border-top:1px solid var(--rule); background:var(--paper-2);">
+<div class="section-wrap" id="experience">
+  <div class="section-label">Experience</div>
+  <h2 class="section-h">Where I've done <em>the real work.</em></h2>
+
+  <div class="exp-grid reveal">
+    <div class="exp-sidebar">
+      <div class="exp-date">Jan 2025 — Present</div>
+      <div class="exp-co">Xalt Analytics Pvt Ltd</div>
+      <div class="exp-loc">Indore, India</div>
+    </div>
+    <div class="exp-body">
+      <div class="exp-role">Generative AI Engineer</div>
+      <div class="exp-tagline">Owned end-to-end delivery of 3 live AI products — from research and PoC, through deployment and security hardening, to ongoing production maintenance — with zero product failures.</div>
+      <div class="exp-wins">
+        <div class="win-card">
+          <div class="win-icon">💰</div>
+          <div class="win-title">Cost engineering</div>
+          <div class="win-desc">Replaced Creatify (USD SaaS) with in-house open-source. Drove per-generation cost to under ₹16 and eliminated vendor dependency.</div>
+        </div>
+        <div class="win-card">
+          <div class="win-icon">🔐</div>
+          <div class="win-title">Security-first shipping</div>
+          <div class="win-desc">Ran prompt injection, hijacking, and adversarial input testing before every production release. No security incidents post-launch.</div>
+        </div>
+        <div class="win-card">
+          <div class="win-icon">🏗️</div>
+          <div class="win-title">Infrastructure ownership</div>
+          <div class="win-desc">Diagnosed cold start issues, migrated Render → GPU cloud, set up Redis/Celery/Nginx/Supervisord. Full infrastructure ownership.</div>
+        </div>
+        <div class="win-card">
+          <div class="win-icon">🌍</div>
+          <div class="win-title">India-first AI</div>
+          <div class="win-desc">Integrated Sarvam for Indian-accent voices and multilingual audio — building AI that works for Indian users, not just English speakers.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="edu-row reveal">
+    <div class="edu-left">
+      <h3>B.Tech · Computer Science & Engineering</h3>
+      <p>Rajiv Gandhi Proudyogiki Vishwavidyalaya · Madhya Pradesh · 2021–2025</p>
+      <p style="margin-top:.5rem;font-size:.85rem;color:var(--accent);font-weight:500;">🏆 Chhavi Jain Scholarship — merit-based tuition concession for academic excellence</p>
+    </div>
+    <div class="edu-right">
+      <div class="cgpa">8.27</div>
+      <div class="cgpa-label">CGPA / 10</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div style="border-top:1px solid var(--rule);">
+<div class="section-wrap" id="achievements">
+  <div class="section-label">Achievements</div>
+  <h2 class="section-h">Numbers that <em>mean something.</em></h2>
+  <div class="ach-grid reveal">
+    <div class="ach-card">
+      <div class="ach-val">3</div>
+      <div class="ach-desc">AI products live in production serving real users</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-val">₹16</div>
+      <div class="ach-desc">Per video generation, down from USD-priced SaaS</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-val">70%</div>
+      <div class="ach-desc">Reduction in manual content creation effort</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-val">0</div>
+      <div class="ach-desc">Production failures across all deployed systems</div>
+    </div>
+  </div>
+  <div class="award-card reveal">
+    <div class="award-icon">🏆</div>
+    <div class="award-body">
+      <h4>Chhavi Jain Scholarship</h4>
+      <p>Merit-based tuition fee concession awarded for academic excellence and high CGPA at Rajiv Gandhi Proudyogiki Vishwavidyalaya. CGPA 8.27/10 across B.Tech in Computer Science & Engineering (2021–2025).</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div style="border-top:1px solid var(--rule); background:var(--paper-2);">
+<div class="section-wrap" id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-h">Let's build something <em>that lasts.</em></h2>
+  <div class="contact-grid reveal">
+    <div class="contact-intro">
+      <h3>Open to senior AI engineering roles</h3>
+      <p>I'm looking for roles where I can go deep — not just ship features, but understand systems, own infrastructure, and build AI products that don't break. Startups or product companies, India or remote.</p>
+      <div class="contact-links">
+        <a class="clink" href="mailto:solankipriya2404@gmail.com">
+          <div class="clink-icon">✉️</div>
+          solankipriya2404@gmail.com
+        </a>
+        <a class="clink" href="https://linkedin.com/in/priya-solanki-ps5450" target="_blank">
+          <div class="clink-icon">💼</div>
+          linkedin.com/in/priya-solanki-ps5450
+        </a>
+        <a class="clink" href="https://github.com/priya5450" target="_blank">
+          <div class="clink-icon">⌨️</div>
+          github.com/priya5450
+        </a>
+        <a class="clink" href="https://leetcode.com/u/Priya_54" target="_blank">
+          <div class="clink-icon">🧩</div>
+          leetcode.com/u/Priya_54
+        </a>
+      </div>
+    </div>
+  
+  </div>
+</div>
+</div>
+
+<footer>
+  <span>© 2026 Priya Solanki</span>
+  <span>Indore, India · <a href="mailto:solankipriya2404@gmail.com">solankipriya2404@gmail.com</a></span>
+</footer>
+
+<script>
+// Typewriter
+const lines = [
+  "Diagnosing why it breaks before building a fix.",
+  "Shipping with zero production failures.",
+  "Replacing USD SaaS with ₹16 open-source.",
+  "Testing for prompt injection before every launch.",
+  "Building AI that works for Indian users.",
+  "Understanding systems, not just connecting APIs.",
+];
+let li = 0, ci = 0, del = false;
+const el = document.getElementById('typer');
+function type() {
+  const txt = lines[li];
+  if (!del) {
+    el.textContent = txt.slice(0, ++ci);
+    if (ci === txt.length) { del = true; setTimeout(type, 2200); return; }
+    setTimeout(type, 42);
+  } else {
+    el.textContent = txt.slice(0, --ci);
+    if (ci === 0) { del = false; li = (li + 1) % lines.length; setTimeout(type, 300); return; }
+    setTimeout(type, 22);
+  }
+}
+type();
+
+// Project accordion
+function toggleProject(row) {
+  const wasOpen = row.classList.contains('open');
+  document.querySelectorAll('.project-row.open').forEach(r => r.classList.remove('open'));
+  if (!wasOpen) row.classList.add('open');
+}
+
+// Form
+function submitForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Sending…'; btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('formOk').style.display = 'block';
+    btn.style.display = 'none';
+    e.target.reset();
+  }, 1000);
+}
+
+// Skill tabs
+function showTab(id, btn) {
+  document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.skill-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Reveal on scroll
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
