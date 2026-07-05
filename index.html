@@ -81,6 +81,13 @@ img { display: block; max-width: 100%; }
 .nav-links a { font-size: .82rem; font-weight: 500; color: var(--ink-2); letter-spacing: .04em; text-transform: uppercase; transition: color .15s; }
 .nav-links a:hover { color: var(--accent); }
 .nav-right { display: flex; align-items: center; gap: .8rem; }
+.nav-hamburger {
+  display: none; width: 36px; height: 36px; border-radius: 8px;
+  border: 1.5px solid var(--rule); background: var(--card-bg); color: var(--ink);
+  font-size: 1.1rem; align-items: center; justify-content: center; cursor: pointer;
+  transition: border-color .15s, background-color .3s;
+}
+.nav-hamburger:hover { border-color: var(--accent); }
 .theme-toggle {
   width: 36px; height: 36px; border-radius: 50%;
   border: 1.5px solid var(--rule); background: var(--card-bg);
@@ -274,6 +281,13 @@ h2.section-h em { font-style: italic; color: var(--accent); }
 .proj-badge {
   font-size: .68rem; font-weight: 600; padding: .2rem .65rem; border-radius: 100px; letter-spacing: .05em;
 }
+.proj-link {
+  font-size: .74rem; font-weight: 600; color: var(--accent);
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .2rem .1rem; border-bottom: 1px solid transparent;
+  transition: border-color .15s;
+}
+.proj-link:hover { border-color: var(--accent); }
 .badge-live { background: var(--ok-bg); color: var(--ok); }
 .badge-prod { background: var(--accent-lt); color: var(--accent); }
 .proj-tagline { font-size: .9rem; color: var(--ink-2); margin-bottom: .9rem; line-height: 1.55; }
@@ -289,9 +303,9 @@ h2.section-h em { font-style: italic; color: var(--accent); }
 .proj-detail-inner { border-top: 1px solid var(--accent-md); padding-top: 1.5rem; }
 .detail-section { margin-bottom: 1.3rem; }
 .detail-section h5 { font-size: .72rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .6rem; font-family: var(--mono); }
-.detail-section ul { list-style: none; display: flex; flex-direction: column; gap: .45rem; }
-.detail-section li { font-size: .88rem; color: var(--ink-2); line-height: 1.6; display: flex; gap: .7rem; }
-.detail-section li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-size: .8rem; padding-top: .05rem; }
+.detail-section ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+.detail-section li { font-size: .88rem; color: var(--ink-2); line-height: 1.65; position: relative; padding-left: 1.35rem; }
+.detail-section li::before { content: '→'; color: var(--accent); position: absolute; left: 0; top: 0; font-size: .8rem; }
 .detail-section li strong { color: var(--ink); font-weight: 600; }
 
 /* ── Experience ────────────────────────────────────────── */
@@ -382,6 +396,23 @@ margin:0 auto;
 .form-submit:hover { background: var(--accent); transform: translateY(-1px); }
 .form-ok { display: none; padding: .9rem 1.1rem; background: var(--ok-bg); border-radius: 8px; color: var(--ok); font-size: .88rem; font-weight: 500; }
 
+/* ── Back to top ───────────────────────────────────────── */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 150;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--btn-bg); color: var(--btn-ink); border: none;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; cursor: pointer;
+  box-shadow: 0 6px 20px rgba(10,14,26,0.18);
+  opacity: 0; visibility: hidden; transform: translateY(12px);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s, background-color .3s;
+}
+.back-to-top.show { opacity: 1; visibility: visible; transform: none; }
+.back-to-top:hover { background: var(--accent); }
+@media (max-width: 600px) {
+  .back-to-top { bottom: 1.25rem; right: 1.25rem; width: 42px; height: 42px; }
+}
+
 /* ── Footer ────────────────────────────────────────────── */
 footer {
   border-top: 1px solid var(--rule); padding: 2rem var(--pad);
@@ -407,14 +438,37 @@ footer a { color: var(--accent); }
   .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
   .contact-links { grid-template-columns: 1fr; }
   .form-row2 { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    position: fixed; top: 62px; left: 0; right: 0;
+    background: var(--card-bg); border-bottom: 1px solid var(--rule);
+    flex-direction: column; gap: 0;
+    max-height: 0; overflow: hidden;
+    transition: max-height .3s ease, background-color .3s;
+  }
+  .nav-links.open { max-height: 320px; }
+  .nav-links a {
+    padding: .95rem var(--pad); border-bottom: 1px solid var(--rule);
+    width: 100%; box-sizing: border-box;
+  }
   footer { flex-direction: column; gap: .5rem; text-align: center; }
 }
 @media (max-width: 600px) {
   .skill-groups { grid-template-columns: 1fr; }
   .ach-grid { grid-template-columns: 1fr 1fr; }
   .project-row { grid-template-columns: 40px 1fr auto; gap: 1rem; padding: 1.5rem; }
+  .proj-detail { padding: 0 1.5rem 1.75rem 1.5rem; }
 }
+@media (max-width: 480px) {
+  .hero-metrics { flex-wrap: wrap; gap: 1.5rem 2rem; }
+  .sp-techs { grid-template-columns: 1fr; }
+  .sp-tech:nth-child(even) { border-right: 1px solid var(--rule); }
+  .sp-tech:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+  .sp-tech:last-child { border-bottom: none; }
+  .ach-grid { grid-template-columns: 1fr; }
+  .proj-top { gap: .5rem; }
+}
+
 </style>
 </head>
 <body>
@@ -423,17 +477,18 @@ footer a { color: var(--accent); }
 <nav id="nav">
   <div class="nav-inner">
     <div class="nav-logo">Priya <span>Solanki</span></div>
-    <div class="nav-links">
-      <a href="#story">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
-      <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
+    <div class="nav-links" id="navLinks">
+      <a href="#story" onclick="closeMobileMenu()">About</a>
+      <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+      <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+      <a href="#experience" onclick="closeMobileMenu()">Experience</a>
+      <a href="#education" onclick="closeMobileMenu()">Education</a>
+      <a href="#contact" onclick="closeMobileMenu()">Contact</a>
     </div>
     <div class="nav-right">
       <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
       <button class="nav-hire" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Hire me</button>
+      <button class="nav-hamburger" id="navHamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
     </div>
   </div>
 </nav>
@@ -452,7 +507,7 @@ footer a { color: var(--accent); }
         &gt; <span id="typer"></span>
       </div>
       <p class="hero-sub">
-        AI/ML Engineer specializing in production LLM systems, multimodal AI pipelines, and cost-efficient AI infrastructure. Indore-based, 1.5+ years shipping chatbots, video pipelines, and fashion AI to real users. I research until I understand, build until it's solid, and deploy until it runs with zero failures.
+        AI/ML Engineer specializing in production LLM systems, multimodal AI pipelines, and cost-efficient AI infrastructure. Indore-based, 1.5+ years shipping chatbots, video pipelines, and fashion AI to real, active users. I research until I understand the problem, then build and test until I'm confident it holds up in production.
       </p>
       <div class="hero-actions">
         <button class="btn-solid" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">See my work</button>
@@ -548,8 +603,8 @@ footer a { color: var(--accent); }
     <div class="story-body">
       <p>I'm an AI/ML Engineer who builds production systems that <strong>real users depend on</strong>. Not demos. Not PoCs that sit in a notebook. Systems that go live, handle traffic, and keep running.</p>
       <p>My work spans the full stack of applied AI — <strong>retrieval-augmented generation, multi-agent orchestration, and multimodal pipelines</strong> that combine vision, audio, and language models. When LangChain's agent reasoning loop couldn't meet the quality bar for a customer-facing product, I didn't just try another framework. I <strong>diagnosed the actual bottleneck</strong> and migrated to the OpenAI Agents SDK — a decision grounded in research, not guesswork.</p>
-      <blockquote>"I make things in a way that nobody can question — that this will fail. Proper research, proper engineering, the best I can do."</blockquote>
-      <p>I care about the Indian AI ecosystem — multilingual systems, Indian-accent voice support, and AI products that work beyond English-first assumptions. Going forward, my focus is on <strong>agentic AI systems</strong>: multi-agent orchestration, interoperable protocols like <strong>MCP and A2A</strong>, and the infrastructure that lets autonomous systems run reliably in production — not just someone who connects APIs.</p>
+      <blockquote>"I build things I've stress-tested myself — proper research, proper engineering, before they ever reach a user."</blockquote>
+      <p>I care about the Indian AI ecosystem — multilingual systems, Indian-accent voice support, and AI products that work beyond English-first assumptions. Going forward, my focus is on <strong>agentic AI systems</strong>: multi-agent orchestration, multi-LLM integration, and the infrastructure that lets autonomous systems run reliably in production — not just someone who connects APIs.</p>
     </div>
     <div class="principles">
       <div class="principle">
@@ -635,12 +690,11 @@ footer a { color: var(--accent); }
         </div>
       </div>
       <div class="sp-techs">
-        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Agentic AI Systems</div><div class="sp-tech-desc">Designing autonomous agent workflows that plan, call tools, and self-correct instead of following fixed logic.</div></div></div>
-        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Multi-Agent Orchestration</div><div class="sp-tech-desc">Coordinating multiple specialised agents with defined handoffs, shared state, and fallback handling.</div></div></div>
-        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Model Context Protocol (MCP)</div><div class="sp-tech-desc">Standardising how agents discover and call external tools and context sources across systems.</div></div></div>
-        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Agent2Agent (A2A) Protocol</div><div class="sp-tech-desc">Enabling cross-agent communication and task delegation between independently built agents.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Agentic AI Systems</div><div class="sp-tech-desc">Built an agentic customer-facing chatbot on the OpenAI Agents SDK that plans, calls tools, and self-corrects instead of following fixed logic.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Multi-Agent Orchestration</div><div class="sp-tech-desc">Coordinated multiple specialised stages/agents with defined handoffs and fallback handling in both the chatbot and video ad pipeline.</div></div></div>
         <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Agno</div><div class="sp-tech-desc">Lightweight agent framework used for building and orchestrating fast, production-ready agent pipelines.</div></div></div>
         <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">Structured Tool-Calling</div><div class="sp-tech-desc">Designing typed, validated tool-calling interfaces so agents can safely invoke internal APIs and services.</div></div></div>
+        <div class="sp-tech"><div class="sp-tech-icon">→</div><div><div class="sp-tech-name">MCP & A2A Protocol</div><div class="sp-tech-desc">Currently learning — exploring how standardised tool-context and cross-agent communication protocols fit into production agent systems.</div></div></div>
       </div>
     </div>
   </div>
@@ -758,7 +812,7 @@ footer a { color: var(--accent); }
 <div style="border-top:1px solid var(--rule);">
 <div class="section-wrap" id="projects">
   <div class="section-label">Projects</div>
-  <h2 class="section-h">Shipped. Live. <em>Unbreakable.</em></h2>
+  <h2 class="section-h">Shipped. Live. <em>In production.</em></h2>
   <p class="section-sub">Four production systems built from research to deployment. Click any to read the full engineering story.</p>
 
   <div class="projects-list reveal">
@@ -770,8 +824,9 @@ footer a { color: var(--accent); }
         <div class="proj-top">
           <span class="proj-title">AI Video Ad Generation Platform</span>
           <span class="proj-badge badge-live">● Live</span>
+          <a class="proj-link" href="https://digiad.ai/features/video-generation/manual-video-generator" target="_blank" onclick="event.stopPropagation()">View live ↗</a>
         </div>
-        <div class="proj-tagline">Replaced a multi-person manual production process with a single automated pipeline — full video in 5–10 minutes, under ₹16/video, replacing Creatify (USD SaaS).</div>
+        <div class="proj-tagline">Live on DigiAd, used by multiple active customers. Replaced a multi-person manual production process with a single automated pipeline — full video in 5–10 minutes, under ₹16/video, replacing Creatify (USD SaaS).</div>
         <div class="proj-stack">
           <span class="stk">LLMs</span><span class="stk">CLIP</span><span class="stk">FFmpeg</span><span class="stk">Redis</span><span class="stk">Celery</span><span class="stk">ElevenLabs</span><span class="stk">Sarvam</span><span class="stk">Ditto</span><span class="stk">Nginx</span><span class="stk">Docker</span><span class="stk">Runpod</span>
         </div>
@@ -786,6 +841,7 @@ footer a { color: var(--accent); }
             <li>Researched how to build a video generation pipeline from scratch — no blueprint existed. Designed the architecture before writing a line of code.</li>
             <li>Manually, producing one ad video needed a person to analyse the website and write the script, a voiceover artist, a videographer for avatar-based shoots, and an editor for effects and subtitles — a process spanning days per video.</li>
             <li>Built modular stages: <strong>LLM script generation → CLIP image selection → audio synthesis → FFmpeg assembly → subtitle injection</strong>. Each stage independently swappable, and the full pipeline now runs <strong>end-to-end in 5–10 minutes</strong> with no manual intervention.</li>
+            <li>Orchestrated the stages as <strong>coordinated agents</strong> rather than a single fixed script, and integrated <strong>multiple LLM providers</strong> — routing script generation and content decisions to the model best suited per task on quality and cost.</li>
             <li>Hit concurrency wall under multi-user load. Added <strong>Redis + Celery</strong> task queue — async job processing, no timeouts, parallel generation.</li>
             <li>Set up <strong>Nginx + Supervisord</strong> on Linux GPU servers for production-grade process management and reliability.</li>
             <li>Added an <strong>avatar-based generation mode using Ditto</strong> for lip-sync: pass an audio URL and an avatar image, and it returns a fully lip-synced video — enabling personalised, avatar-led ads without any shoot. Shipped alongside <strong>Sarvam for Indian-accent voices</strong>, both based on direct user demand.</li>
@@ -807,10 +863,11 @@ footer a { color: var(--accent); }
       <div class="proj-num">02</div>
       <div class="proj-main">
         <div class="proj-top">
-          <span class="proj-title">Customer-Facing AI Chatbot</span>
+          <span class="proj-title">Agentic Customer Support Chatbot</span>
           <span class="proj-badge badge-live">● Live</span>
+          <a class="proj-link" href="https://digiad.ai/" target="_blank" onclick="event.stopPropagation()">View live ↗</a>
         </div>
-        <div class="proj-tagline">Evaluated LangChain → identified bottleneck → migrated to OpenAI Agents SDK. Eliminated cold-start delay entirely, moving from a multi-second wait to an instant response on every query. Security-hardened before launch, with zero incidents since.</div>
+        <div class="proj-tagline">Live on DigiAd. An agentic chatbot built on the OpenAI Agents SDK — evaluated LangChain, identified the bottleneck, migrated. Eliminated cold-start delay entirely, moving from a multi-second wait to an instant response on every query. Security-hardened before launch, with zero incidents since.</div>
         <div class="proj-stack">
           <span class="stk">OpenAI Agents SDK</span><span class="stk">LangChain</span><span class="stk">LangGraph</span><span class="stk">RAG</span><span class="stk">ChromaDB</span><span class="stk">FastAPI</span><span class="stk">Docker</span>
         </div>
@@ -824,6 +881,7 @@ footer a { color: var(--accent); }
           <ul>
             <li>Started with LangChain + LangGraph and open-source LLMs. Output quality was insufficient for a customer-facing product.</li>
             <li><strong>Diagnosed the failure</strong>: agent reasoning loop was the bottleneck, not the model itself. Migrated to OpenAI Agents SDK — the right fix, not just a workaround.</li>
+            <li>Structured it as a <strong>multi-agent system</strong> — specialised agents handling retrieval, reasoning, and response generation, orchestrated with defined handoffs rather than one monolithic prompt.</li>
             <li>Chose <strong>RAG over fine-tuning</strong> because the knowledge base needed frequent updates without retraining cycles. Implemented ChromaDB with semantic chunking.</li>
             <li>Initial deployment on Render caused severe cold start latency — the first query after idle time could take several seconds. <strong>Researched root cause</strong> (serverless spin-up), documented tradeoffs, migrated to persistent GPU cloud, and eliminated the delay entirely — every query now gets an immediate response.</li>
             <li>Ran dedicated <strong>security pass before go-live</strong>: prompt injection, hijacking, jailbreak attempts. Patched system prompt vulnerabilities and added an input sanitisation layer — <strong>zero security incidents since launch</strong>.</li>
@@ -998,7 +1056,7 @@ footer a { color: var(--accent); }
   <div class="ach-grid reveal">
     <div class="ach-card">
       <div class="ach-val">3</div>
-      <div class="ach-desc">AI products live in production serving real users</div>
+      <div class="ach-desc">AI products live in production, used by multiple active customers</div>
     </div>
     <div class="ach-card">
       <div class="ach-val">₹16</div>
@@ -1024,7 +1082,7 @@ footer a { color: var(--accent); }
   <h2 class="section-h">Let's build something <em>that lasts.</em></h2>
   <div class="contact-grid reveal">
     <div class="contact-intro">
-      <h3>Open to senior AI engineering roles</h3>
+      <h3>Open to AI Engineering roles</h3>
       <p>I'm looking for roles where I can go deep — not just ship features, but understand systems, own infrastructure, and build AI products that don't break. Startups or product companies, India or remote.</p>
       <div class="contact-links">
         <a class="clink" href="mailto:solankipriya2404@gmail.com">
@@ -1050,6 +1108,8 @@ footer a { color: var(--accent); }
 </div>
 </div>
 
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top" title="Back to top">↑</button>
+
 <footer>
   <span>© 2026 Priya Solanki</span>
   <span>Indore, India · <a href="mailto:solankipriya2404@gmail.com">solankipriya2404@gmail.com</a></span>
@@ -1074,7 +1134,7 @@ function toggleTheme() {
 // Typewriter
 const lines = [
   "Designing multi-agent systems that plan and self-correct.",
-  "Speaking MCP and A2A so agents can work together.",
+  "Built an agentic chatbot on the OpenAI Agents SDK.",
   "Shipping LLM products across OpenAI, Gemini, and Claude.",
   "Turning a multi-day production process into 10 minutes.",
   "Testing for prompt injection before every launch.",
@@ -1122,6 +1182,27 @@ function showTab(id, btn) {
   document.getElementById('tab-' + id).classList.add('active');
   btn.classList.add('active');
 }
+
+// Mobile nav menu
+function toggleMobileMenu() {
+  const nav = document.getElementById('navLinks');
+  const btn = document.getElementById('navHamburger');
+  const isOpen = nav.classList.toggle('open');
+  btn.textContent = isOpen ? '✕' : '☰';
+}
+function closeMobileMenu() {
+  const nav = document.getElementById('navLinks');
+  const btn = document.getElementById('navHamburger');
+  nav.classList.remove('open');
+  btn.textContent = '☰';
+}
+
+// Back to top
+const backToTopBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 500) backToTopBtn.classList.add('show');
+  else backToTopBtn.classList.remove('show');
+});
 
 // Reveal on scroll
 const obs = new IntersectionObserver(entries => {
